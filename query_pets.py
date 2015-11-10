@@ -7,17 +7,17 @@
 import sqlite3 as lite
 import sys
 
-con = None
+con = None #just in case no connection
 
 try:
-    con = lite.connect('pets.db')
-    con.row_factory = lite.Row
+    con = lite.connect('pets.db') #connects to database
+    con.row_factory = lite.Row #prints contents
 
     while True:
         choice_person = raw_input('Enter an ID number: ')
 
         if choice_person == '-1':
-            sys.exit()
+            sys.exit() #exits program
         
         else:
             try:
@@ -28,8 +28,8 @@ try:
                 continue
 
         cur = con.cursor()
-        cur.execute("SELECT * FROM person WHERE id =?", [(choice_person)])
-        row = cur.fetchone()
+        cur.execute("SELECT * FROM person WHERE id =?", [(choice_person)]) #retrieving data
+        row = cur.fetchone() #fetches data one at a time thru loop
 
         if row == None:
             print 'Invalid ID number. Make another choice.'

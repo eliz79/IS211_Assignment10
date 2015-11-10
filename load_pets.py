@@ -13,6 +13,7 @@ try:
     con = lite.connect('pets.db')
     cur = con.cursor()
 
+#allows to SQL execute in one step
     cur.executescript("""
         DROP TABLE IF EXISTS person;
         DROP TABLE IF EXISTS pet;
@@ -44,10 +45,10 @@ try:
         INSERT INTO person_pet VALUES(4, 6);
         """)
     
-    con.commit()
+    con.commit() #changes to be committed
     
 
-except lite.Error, e:
+except lite.Error, e: 
 
     if con:
         con.rollback()
